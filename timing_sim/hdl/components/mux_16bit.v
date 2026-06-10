@@ -11,8 +11,8 @@ module mux_16bit (
 hc157_mux my_mpx[3:0] (
     .A(A),
     .B(B),
-    .Select(Select),
-    .Enable(Enable),
+    .Select({4{Select}}),
+    .Enable({4{Enable}}),
     .Out(Out)
 );
 

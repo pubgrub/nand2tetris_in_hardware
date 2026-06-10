@@ -1,5 +1,5 @@
 $date
-	Sun May 10 17:36:24 2026
+	Mon May 11 23:28:21 2026
 $end
 $version
 	Icarus Verilog
@@ -7,278 +7,200 @@ $end
 $timescale
 	1ns
 $end
-$scope module jmp_logic_tb $end
-$var wire 1 ! Jmp_tb $end
-$var reg 16 " Instruction_tb [15:0] $end
-$var reg 1 # Negative_tb $end
-$var reg 1 $ Zero_tb $end
-$scope module my_jmp_logic $end
-$var wire 16 % Instruction [15:0] $end
-$var wire 1 # Negative $end
-$var wire 1 $ Zero $end
-$var wire 4 & or_out [3:0] $end
-$var wire 4 ' or_b_in [3:0] $end
-$var wire 4 ( or_a_in [3:0] $end
-$var wire 6 ) not_out [5:0] $end
-$var wire 6 * not_in [5:0] $end
-$var wire 4 + and_out [3:0] $end
-$var wire 4 , and_b_in [3:0] $end
-$var wire 4 - and_a_in [3:0] $end
-$var wire 1 ! Jmp $end
-$scope module my_and $end
-$var wire 4 . A [3:0] $end
-$var wire 4 / B [3:0] $end
-$var wire 4 0 Out [3:0] $end
+$scope module test_rom_tb $end
+$var wire 16 ! Data_tb [15:0] $end
+$var reg 15 " Address_tb [14:0] $end
+$var reg 1 # Clk_tb $end
+$scope module my_rom $end
+$var wire 15 $ address [14:0] $end
+$var wire 8 % data_low [7:0] $end
+$var wire 8 & data_high [7:0] $end
+$var wire 16 ' data [15:0] $end
+$var parameter 144 ( FILE_16BIT $end
+$scope module rom_high $end
+$var wire 15 ) Address [14:0] $end
+$var wire 8 * Data [7:0] $end
+$var parameter 8 + ROM_FILE $end
 $upscope $end
-$scope module my_not $end
-$var wire 6 1 In [5:0] $end
-$var wire 6 2 Out [5:0] $end
+$scope module rom_low $end
+$var wire 15 , Address [14:0] $end
+$var wire 8 - Data [7:0] $end
+$var parameter 8 . ROM_FILE $end
 $upscope $end
-$scope module my_or $end
-$var wire 4 3 A [3:0] $end
-$var wire 4 4 B [3:0] $end
-$var wire 4 5 Out [3:0] $end
+$scope begin $ivl_for_loop0 $end
+$var integer 32 / i [31:0] $end
+$upscope $end
+$scope begin $ivl_for_loop1 $end
+$var integer 32 0 i [31:0] $end
 $upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 $comment Show the parameter values. $end
 $dumpall
+b0 .
+b0 +
+b11001000110000101110100011000010010111101110010011011110110110101011111001100010011011001100010011010010111010000101110011101000111100001110100 (
 $end
 #0
 $dumpvars
-bx 5
-bzxx0 4
-bzxx0 3
-bx 2
-bzx 1
-bx 0
-b1000 /
-bx00 .
-bx00 -
-b1000 ,
-bx +
-bzx *
-bx )
-bzxx0 (
-bzxx0 '
+b111111111111111 0
+b1000000000000000 /
+bx -
+b0 ,
+bx *
+b0 )
+bx '
 bx &
-b1000000000000000 %
-0$
+bx %
+b0 $
 0#
-b1000000000000000 "
-x!
+b0 "
+bx !
 $end
-#10
-bz000 '
-bz000 4
-bzx00 (
-bzx00 3
-bz0 *
-bz0 1
-bx000 +
-bx000 0
-bx0 &
-bx0 5
-#19
-bx100 -
-bx100 .
-bx1 )
-bx1 2
-#20
-bz000 (
-bz000 3
-bx00 &
-bx00 5
-#30
-b100 -
-b100 .
-bx000 &
-bx000 5
-#40
-0!
-b0 +
-b0 0
-#100
-b1100 ,
-b1100 /
-b1000000000000001 "
-b1000000000000001 %
-#110
-bz100 '
-bz100 4
-b100 +
-b100 0
-#120
-b1100 -
-b1100 .
-bx100 &
-bx100 5
-#130
-1!
-b1100 +
-b1100 0
+#150
+b0 !
+b0 '
+b0 %
+b0 -
+b0 &
+b0 *
 #200
-b1001 ,
-b1001 /
-b1000000000000010 "
-b1000000000000010 %
-#210
-bz000 '
-bz000 4
-b1000 +
-b1000 0
-#220
-b100 -
-b100 .
-bx000 &
-bx000 5
-#230
-0!
-b0 +
-b0 0
-#300
-b1010 ,
-b1010 /
-b1000000000000100 "
-b1000000000000100 %
-#400
-b1000 ,
-b1000 /
-b110 -
-b110 .
-bz001 '
-bz001 4
-b1000000000000000 "
-b1000000000000000 %
+b1 "
+b1 $
+b1 )
+b1 ,
 1#
-#410
-bz1 *
-bz1 1
-bx001 &
-bx001 5
-#419
-b10 -
-b10 .
-bx0 )
-bx0 2
-#500
-b1100 ,
-b1100 /
-b1000000000000001 "
-b1000000000000001 %
-#600
-b1001 ,
-b1001 /
-b1000000000000010 "
-b1000000000000010 %
-#700
-b1010 ,
-b1010 /
-b1000000000000100 "
-b1000000000000100 %
-#710
-bz011 '
-bz011 4
-b10 +
-b10 0
-#720
-bz100 (
-bz100 3
-bx011 &
-bx011 5
-#730
-b1010 -
-b1010 .
-bx111 &
-bx111 5
-#740
-1!
-b1010 +
-b1010 0
-#800
-b1000 ,
-b1000 /
-bz010 '
-bz010 4
-b1001 -
-b1001 .
-bz101 (
-bz101 3
-b1000000000000000 "
-b1000000000000000 %
+#350
+b1100100 !
+b1100100 '
+b1100100 %
+b1100100 -
+#400
 0#
-1$
-#810
-bz000 '
-bz000 4
-b1000 +
-b1000 0
-#820
-bz001 (
-bz001 3
-bx101 &
-bx101 5
-#830
-b1 -
-b1 .
-bx001 &
-bx001 5
-#840
-0!
-b0 +
-b0 0
-#900
-b1100 ,
-b1100 /
-b1000000000000001 "
-b1000000000000001 %
+#600
+b10 "
+b10 $
+b10 )
+b10 ,
+1#
+#750
+b1110110000010000 !
+b1110110000010000 '
+b11101100 &
+b11101100 *
+b10000 %
+b10000 -
+#800
+0#
 #1000
-b1001 ,
-b1001 /
-b1000000000000010 "
-b1000000000000010 %
-#1010
-bz011 (
-bz011 3
-b1 +
-b1 0
-#1020
-bz111 (
-bz111 3
-bx011 &
-bx011 5
-#1030
-b1001 -
-b1001 .
-bx111 &
-bx111 5
-#1040
-1!
-b1001 +
-b1001 0
-#1100
-b1010 ,
-b1010 /
-b1000000000000100 "
-b1000000000000100 %
-#1110
-bz101 (
-bz101 3
-b1000 +
-b1000 0
-#1120
-bz001 (
-bz001 3
-bx101 &
-bx101 5
-#1130
-b1 -
-b1 .
-bx001 &
-bx001 5
-#1140
-0!
-b0 +
-b0 0
+b11 "
+b11 $
+b11 )
+b11 ,
+1#
+#1150
+b0 !
+b0 '
+b0 &
+b0 *
+b0 %
+b0 -
 #1200
+0#
+#1400
+b100 "
+b100 $
+b100 )
+b100 ,
+1#
+#1550
+b1110001100001000 !
+b1110001100001000 '
+b11100011 &
+b11100011 *
+b1000 %
+b1000 -
+#1600
+0#
+#1800
+b101 "
+b101 $
+b101 )
+b101 ,
+1#
+#1950
+b10 !
+b10 '
+b0 &
+b0 *
+b10 %
+b10 -
+#2000
+0#
+#2200
+b110 "
+b110 $
+b110 )
+b110 ,
+1#
+#2350
+b1110110000010000 !
+b1110110000010000 '
+b11101100 &
+b11101100 *
+b10000 %
+b10000 -
+#2400
+0#
+#2600
+b111 "
+b111 $
+b111 )
+b111 ,
+1#
+#2750
+b1 !
+b1 '
+b0 &
+b0 *
+b1 %
+b1 -
+#2800
+0#
+#3000
+b1000 "
+b1000 $
+b1000 )
+b1000 ,
+1#
+#3150
+b1110001100001000 !
+b1110001100001000 '
+b11100011 &
+b11100011 *
+b1000 %
+b1000 -
+#3200
+0#
+#3400
+b1001 "
+b1001 $
+b1001 )
+b1001 ,
+1#
+#3550
+b0 !
+b0 '
+b0 &
+b0 *
+b0 %
+b0 -
+#3600
+0#
+#3800
+b1010 "
+b1010 $
+b1010 )
+b1010 ,
+1#

@@ -8,56 +8,173 @@
 :vpi_module "/usr/lib/ivl/v2005_math.vpi";
 :vpi_module "/usr/lib/ivl/va_math.vpi";
 :vpi_module "/usr/lib/ivl/v2009.vpi";
-S_0x55f82a527a90 .scope package, "$unit" "$unit" 2 1;
+S_0x557bc1582670 .scope package, "$unit" "$unit" 2 1;
  .timescale 0 0;
-S_0x55f82a527c20 .scope module, "hc377_tb" "hc377_tb" 3 3;
+S_0x557bc1582800 .scope module, "test_rom_tb" "test_rom_tb" 3 3;
  .timescale -9 -9;
-o0x7f752d4da018 .functor BUFZ 1, c4<z>; HiZ drive
-v0x55f82a5734d0_0 .net "Cin_tb", 0 0, o0x7f752d4da018;  0 drivers
-v0x55f82a573590_0 .var "Clk_tb", 0 0;
-v0x55f82a573650_0 .var "Enable_tb", 0 0;
-v0x55f82a573750_0 .var "In_tb", 7 0;
-v0x55f82a573820_0 .net "Out_tb", 7 0, v0x55f82a573340_0;  1 drivers
-S_0x55f82a54d790 .scope module, "my_register" "hc377_register" 3 10, 4 3 0, S_0x55f82a527c20;
+v0x557bc15b2c50_0 .var "Address_tb", 14 0;
+v0x557bc15b2d10_0 .var "Clk_tb", 0 0;
+v0x557bc15b2df0_0 .net "Data_tb", 15 0, L_0x557bc15b3630;  1 drivers
+E_0x557bc1582bb0 .event posedge, v0x557bc15b2d10_0;
+S_0x557bc1558ba0 .scope module, "my_rom" "rom_16bit" 3 9, 4 3 0, S_0x557bc1582800;
  .timescale -9 -9;
-    .port_info 0 /INPUT 8 "In";
-    .port_info 1 /INPUT 1 "Enable";
-    .port_info 2 /INPUT 1 "Clk";
-    .port_info 3 /OUTPUT 8 "Out";
-v0x55f82a54d970_0 .net "Clk", 0 0, o0x7f752d4da018;  alias, 0 drivers
-v0x55f82a573190_0 .net "Enable", 0 0, v0x55f82a573650_0;  1 drivers
-v0x55f82a573250_0 .net "In", 7 0, v0x55f82a573750_0;  1 drivers
-v0x55f82a573340_0 .var "Out", 7 0;
-E_0x55f82a561b70 .event posedge, v0x55f82a54d970_0;
-    .scope S_0x55f82a54d790;
+    .port_info 0 /INPUT 15 "address";
+    .port_info 1 /OUTPUT 16 "data";
+P_0x557bc1558d30 .param/str "FILE_16BIT" 0 4 4, "data/rom_16bit.txt";
+v0x557bc15b27a0_0 .net "address", 14 0, v0x557bc15b2c50_0;  1 drivers
+v0x557bc15b28b0_0 .net "data", 15 0, L_0x557bc15b3630;  alias, 1 drivers
+v0x557bc15b2990_0 .net "data_high", 7 0, L_0x557bc15b3480;  1 drivers
+v0x557bc15b2a30_0 .net "data_low", 7 0, L_0x557bc15b30b0;  1 drivers
+v0x557bc15b2b00 .array "temp_mem", 32767 0, 15 0;
+L_0x557bc15b3630 .concat [ 8 8 0 0], L_0x557bc15b30b0, L_0x557bc15b3480;
+S_0x557bc1558e20 .scope begin, "$ivl_for_loop0" "$ivl_for_loop0" 4 26, 4 26 0, S_0x557bc1558ba0;
+ .timescale -9 -9;
+v0x557bc1582990_0 .var/2s "i", 31 0;
+S_0x557bc15b1380 .scope begin, "$ivl_for_loop1" "$ivl_for_loop1" 4 34, 4 34 0, S_0x557bc1558ba0;
+ .timescale -9 -9;
+v0x557bc15b1580_0 .var/2s "i", 31 0;
+S_0x557bc15b1660 .scope module, "rom_high" "at28c256_15_rom" 4 18, 5 3 0, S_0x557bc1558ba0;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 15 "Address";
+    .port_info 1 /OUTPUT 8 "Data";
+P_0x557bc15b1840 .param/str "ROM_FILE" 0 5 4, "\000";
+L_0x557bc15b3480/d .functor BUFZ 8, L_0x557bc15b3280, C4<00000000>, C4<00000000>, C4<00000000>;
+L_0x557bc15b3480 .delay 8 (150,150,150) L_0x557bc15b3480/d;
+v0x557bc15b1950_0 .net "Address", 14 0, v0x557bc15b2c50_0;  alias, 1 drivers
+v0x557bc15b1a50_0 .net "Data", 7 0, L_0x557bc15b3480;  alias, 1 drivers
+v0x557bc15b1b30_0 .net *"_ivl_0", 7 0, L_0x557bc15b3280;  1 drivers
+v0x557bc15b1bf0_0 .net *"_ivl_2", 15 0, L_0x557bc15b3340;  1 drivers
+L_0x7fc0492ae060 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x557bc15b1cd0_0 .net *"_ivl_5", 0 0, L_0x7fc0492ae060;  1 drivers
+v0x557bc15b1e00 .array "memory", 32747 0, 7 0;
+L_0x557bc15b3280 .array/port v0x557bc15b1e00, L_0x557bc15b3340;
+L_0x557bc15b3340 .concat [ 15 1 0 0], v0x557bc15b2c50_0, L_0x7fc0492ae060;
+S_0x557bc15b1f20 .scope module, "rom_low" "at28c256_15_rom" 4 13, 5 3 0, S_0x557bc1558ba0;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 15 "Address";
+    .port_info 1 /OUTPUT 8 "Data";
+P_0x557bc15b2100 .param/str "ROM_FILE" 0 5 4, "\000";
+L_0x557bc15b30b0/d .functor BUFZ 8, L_0x557bc15b2ec0, C4<00000000>, C4<00000000>, C4<00000000>;
+L_0x557bc15b30b0 .delay 8 (150,150,150) L_0x557bc15b30b0/d;
+v0x557bc15b2210_0 .net "Address", 14 0, v0x557bc15b2c50_0;  alias, 1 drivers
+v0x557bc15b22f0_0 .net "Data", 7 0, L_0x557bc15b30b0;  alias, 1 drivers
+v0x557bc15b23b0_0 .net *"_ivl_0", 7 0, L_0x557bc15b2ec0;  1 drivers
+v0x557bc15b2470_0 .net *"_ivl_2", 15 0, L_0x557bc15b2fc0;  1 drivers
+L_0x7fc0492ae018 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x557bc15b2550_0 .net *"_ivl_5", 0 0, L_0x7fc0492ae018;  1 drivers
+v0x557bc15b2680 .array "memory", 32747 0, 7 0;
+L_0x557bc15b2ec0 .array/port v0x557bc15b2680, L_0x557bc15b2fc0;
+L_0x557bc15b2fc0 .concat [ 15 1 0 0], v0x557bc15b2c50_0, L_0x7fc0492ae018;
+    .scope S_0x557bc15b1f20;
 T_0 ;
-    %wait E_0x55f82a561b70;
-    %load/vec4 v0x55f82a573190_0;
-    %nor/r;
-    %flag_set/vec4 8;
-    %jmp/0xz  T_0.0, 8;
-    %load/vec4 v0x55f82a573250_0;
-    %assign/vec4 v0x55f82a573340_0, 0;
-T_0.0 ;
-    %jmp T_0;
+    %end;
     .thread T_0;
-    .scope S_0x55f82a527c20;
+    .scope S_0x557bc15b1660;
 T_1 ;
-    %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x55f82a573590_0, 0, 1;
-T_1.0 ;
-    %delay 20, 0;
-    %load/vec4 v0x55f82a573590_0;
-    %inv;
-    %store/vec4 v0x55f82a573590_0, 0, 1;
-    %jmp T_1.0;
-T_1.1 ;
     %end;
     .thread T_1;
+    .scope S_0x557bc1558ba0;
+T_2 ;
+    %fork t_1, S_0x557bc1558e20;
+    %jmp t_0;
+    .scope S_0x557bc1558e20;
+t_1 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x557bc1582990_0, 0, 32;
+T_2.0 ; Top of for-loop
+    %load/vec4 v0x557bc1582990_0;
+    %cmpi/s 32768, 0, 32;
+	  %jmp/0xz T_2.1, 5;
+    %pushi/vec4 0, 0, 16;
+    %ix/getv/s 4, v0x557bc1582990_0;
+    %store/vec4a v0x557bc15b2b00, 4, 0;
+T_2.2 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0x557bc1582990_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0x557bc1582990_0, 0, 32;
+    %jmp T_2.0;
+T_2.1 ; for-loop exit label
+    %end;
+    .scope S_0x557bc1558ba0;
+t_0 %join;
+    %vpi_call/w 4 31 "$readmemh", P_0x557bc1558d30, v0x557bc15b2b00 {0 0 0};
+    %fork t_3, S_0x557bc15b1380;
+    %jmp t_2;
+    .scope S_0x557bc15b1380;
+t_3 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x557bc15b1580_0, 0, 32;
+T_2.3 ; Top of for-loop
+    %load/vec4 v0x557bc15b1580_0;
+    %cmpi/s 32767, 0, 32;
+	  %jmp/0xz T_2.4, 5;
+    %ix/getv/s 4, v0x557bc15b1580_0;
+    %load/vec4a v0x557bc15b2b00, 4;
+    %parti/s 8, 8, 5;
+    %ix/getv/s 4, v0x557bc15b1580_0;
+    %store/vec4a v0x557bc15b1e00, 4, 0;
+    %ix/getv/s 4, v0x557bc15b1580_0;
+    %load/vec4a v0x557bc15b2b00, 4;
+    %parti/s 8, 0, 2;
+    %ix/getv/s 4, v0x557bc15b1580_0;
+    %store/vec4a v0x557bc15b2680, 4, 0;
+T_2.5 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0x557bc15b1580_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0x557bc15b1580_0, 0, 32;
+    %jmp T_2.3;
+T_2.4 ; for-loop exit label
+    %end;
+    .scope S_0x557bc1558ba0;
+t_2 %join;
+    %end;
+    .thread T_2;
+    .scope S_0x557bc1582800;
+T_3 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x557bc15b2d10_0, 0, 1;
+T_3.0 ;
+    %delay 200, 0;
+    %load/vec4 v0x557bc15b2d10_0;
+    %inv;
+    %store/vec4 v0x557bc15b2d10_0, 0, 1;
+    %jmp T_3.0;
+T_3.1 ;
+    %end;
+    .thread T_3;
+    .scope S_0x557bc1582800;
+T_4 ;
+    %vpi_call/w 3 20 "$dumpfile", "timing_result.vcd" {0 0 0};
+    %vpi_call/w 3 21 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x557bc1582800 {0 0 0};
+    %pushi/vec4 0, 0, 15;
+    %store/vec4 v0x557bc15b2c50_0, 0, 15;
+    %pushi/vec4 10, 0, 32;
+T_4.0 %dup/vec4;
+    %cmpi/s 0, 0, 32;
+    %jmp/1xz T_4.1, 5;
+    %jmp/1 T_4.1, 4;
+    %subi 1, 0, 32;
+    %wait E_0x557bc1582bb0;
+    %load/vec4 v0x557bc15b2c50_0;
+    %addi 1, 0, 15;
+    %store/vec4 v0x557bc15b2c50_0, 0, 15;
+    %jmp T_4.0;
+T_4.1 ;
+    %pop/vec4 1;
+    %vpi_call/w 3 30 "$finish" {0 0 0};
+    %end;
+    .thread T_4;
 # The file index is used to find the file name in the following table.
-:file_names 5;
+:file_names 6;
     "N/A";
     "<interactive>";
     "-";
-    "test/test_hc377.v";
-    "hdl/chips//hc377_register.v";
+    "./test/test_rom_16.sv";
+    "./hdl/pc_parts/rom_16bit.v";
+    "./hdl/chips/at28c256_15_rom.v";
